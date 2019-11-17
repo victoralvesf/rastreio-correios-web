@@ -1,36 +1,68 @@
 import React, { Component } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 
 import PackageIcon from '../../assets/images/package.svg';
-import { FormContainer } from './styles';
+import { FormContainer, SubmitButton } from './styles';
+
+import api from '../../services/api';
 
 export default class Form extends Component {
   constructor() {
     super();
     this.state = {
-      input: '',
+      trackingInput: '',
+      loading: false,
     }
   }
 
   handleInputChange = e => {
-    this.setState({ input: e.target.value.toUpperCase() });
+    this.setState({ trackingInput: e.target.value.toUpperCase() });
+  }
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    this.setState({ loading: true });
+    const { trackingInput } = this.state;
+
+    const response = await api.get('/tracking', {
+      params: {
+        id: trackingInput,
+      }
+    })
+
+    console.log(response);
+
+    this.setState({ loading: false });
+
+    this.props.history.push({
+      pathname: `/tracking/${trackingInput}`,
+      state: { tracking: response.data },
+    });
   }
 
   render() {
-    const { input } = this.state;
+    const { trackingInput, loading } = this.state;
     return(
-      <FormContainer>
+      <FormContainer onSubmit={this.handleSubmit}>
         <img src={PackageIcon} alt="Pacote"/>
         <span>Rastreamento de objetos nos Correios, todas as modalidades.</span>
         <input 
           type="text"
           autoFocus
           placeholder="Código de rastreio"
-          value={input}
+          value={trackingInput}
           onChange={this.handleInputChange}
           pattern="[A-Z]{2}[0-9]{9}[A-Z]{2}"
           title="Exemplo: AA132456789BB"
           required />
-        <button type="submit">Rastrear</button>
+        <SubmitButton loading={loading}>
+          {loading ? (
+            <FaSpinner color="#666" size={14} />
+          ) : (
+            'Rastrear'
+          )}
+        </SubmitButton>
       </FormContainer>
     );
   }

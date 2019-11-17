@@ -10,6 +10,12 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: 'Kanit';
+  src: url('./assets/fonts/Kanit-ExtraBold.ttf');
+  font-weight: bold;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -27,8 +33,20 @@ button, input {
 
 button {
   cursor: pointer;
+  font-weight: bold;
+  color: #666;
+  background: var(--main-color);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button:hover {
+  background: var(--main-color-hover);
 }
 
 :root {
   --main-color: #FFDB59;
+  --main-color-hover: #f1ca3f;
+  --fail-color: red;
+  --success-color: green;
 }

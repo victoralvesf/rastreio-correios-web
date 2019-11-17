@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 export const FormContainer = styled.form`
   max-width: 550px;
@@ -22,6 +22,10 @@ export const FormContainer = styled.form`
     border: 6px solid #fff;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
     border-radius: 50%;
+    -moz-window-dragging: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   span {
@@ -45,6 +49,10 @@ export const FormContainer = styled.form`
     color: #999;
     width: 240px;
 
+    &:valid {
+      box-shadow: 0 0 4px var(--success-color);
+    }
+
     &::placeholder {
       font-size: 18px;
       text-align: center;
@@ -52,16 +60,38 @@ export const FormContainer = styled.form`
       color: #999;
     }
   }
+`;
 
-  button {
-    border: 0;
-    border-radius: 4px;
-    padding: 10px 0px;
-    width: 262px;
-    height: 43px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #666;
-    background: var(--main-color);
+const rotate = keyframes`
+  from: {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const SubmitButton = styled.button.attrs(props => ({
+  type: 'submit',
+  disabled: props.loading,
+}))`
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 0px;
+  width: 262px;
+  height: 43px;
+  font-size: 18px;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  ${props =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
 `;

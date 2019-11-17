@@ -5,7 +5,9 @@ import { HeaderContainer } from './styles';
 function Header() {
   return(
     <HeaderContainer>
-      <span>Rastreamento Correios</span>
+      <a href="/">
+        <span>Rastreamento Correios</span>
+      </a>
     </HeaderContainer>
   );
 }

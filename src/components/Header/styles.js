@@ -12,6 +12,10 @@ export const HeaderContainer = styled.div`
   font-size: 28px;
   font-weight: bold;
 
+  a {
+    text-decoration: none;
+  }
+
   span {
     margin: 0;
     color: #333;

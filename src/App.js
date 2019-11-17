@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Header from './components/Header';
-import Form from './components/Form';
 import Footer from './components/Footer';
+
+import Routes from './routes';
 
 import { AppContainer, BodyContainer } from './styles';
 
@@ -11,7 +12,7 @@ function App() {
     <AppContainer>
       <Header />
       <BodyContainer>        
-        <Form />
+        <Routes />
       </BodyContainer>
       <Footer />
     </AppContainer>
