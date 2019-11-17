@@ -1,13 +1,34 @@
+@font-face {
+  font-family: 'Roobert';
+  src: url('./assets/fonts/Roobert-Regular.otf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Roobert';
+  src: url('./assets/fonts/Roobert-Bold.otf');
+  font-weight: bold;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roobert', "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+button, input {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+:root {
+  --main-color: #FFDB59;
 }
